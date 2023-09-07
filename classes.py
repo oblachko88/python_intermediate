@@ -12,8 +12,9 @@ class Person:
     return "Name: {}, Age: {}, Height {}".format(self.name, self.age, self.height)
     # return f"Name: {self.name}, Age: {self.age}, Height: {self.height}"
 
-  def get_older(years):
+  def get_older(self, years):
     self.age += years
+    return self.age
 
   def __del__(self): #Delete variable
     Person.amount -= 1
@@ -22,14 +23,21 @@ class Person:
     x = "hello world"
     return print(x)
 
+class Worker: 
+  
+  def __init__ (self, name, age, height, salary):
+    super(Worker, self).__init__(name, age, height)
+    self.salary = salary
 
-person1 = Person("Mike", 30, 180)
-print(person1)
+  def __str__(self):
+    text = super(Worker, self).__str__()
+    text += ", Salary {}".format(self.salary)
+    return text
 
-person2 = Person("Sara", 25, 165)
-print(person2)
+  def calc_yearly_salary(self):
+    return self.salary * 12
 
-person3 = Person("Alex", 35, 175)
-print(person3)
+worker1 = Worker("Henry", 25, 174, 3000)
 
-print(Person.amount)
+print(worker1)
+print(worker1.calc_yearly_salary())
